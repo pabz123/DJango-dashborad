@@ -1,0 +1,19 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+  <h1>All Posts</h1>
+  <a href="/dashboard/posts/new/">+ New Post</a>
+
+  {% for post in posts %}
+    <div>
+      <h3><a href="/dashboard/posts/{{ post.pk }}/">{{ post.title }}</a></h3>
+      <p>{{ post.created_at }}</p>
+      <a href="/dashboard/posts/{{ post.pk }}/edit/">Edit</a>
+      <a href="/dashboard/posts/{{ post.pk }}/delete/">Delete</a>
+    </div>
+  {% empty %}
+    <p>No posts yet.</p>
+  {% endfor %}
+{% endblock %}

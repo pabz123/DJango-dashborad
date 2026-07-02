@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+  </head>
+  <body>
+
+    <nav>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/hello/">Hello</a>
+      <a href="/about/">About</a>
+
+      {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}</span>
+        <form method="POST" action="/accounts/logout/" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit">Logout</button>
+        </form>
+      {% else %}
+        <a href="/accounts/login/">Login</a>
+      {% endif %}
+    </nav>
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer>
+      <p>Built with Django</p>
+    </footer>
+
+  </body>
+</html>

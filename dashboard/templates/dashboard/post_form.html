@@ -1,0 +1,15 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Post Form{% endblock %}
+
+{% block content %}
+  <h1>{% if object %}Edit Post{% else %}New Post{% endif %}</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+
+  <a href="/dashboard/posts/">← Cancel</a>
+{% endblock %}

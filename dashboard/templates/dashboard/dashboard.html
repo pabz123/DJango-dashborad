@@ -1,0 +1,60 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>My Dashboard</h1>
+
+<section>
+    <h2>Posts</h2>
+    {% for post in posts %}
+    <div>
+        <h3><a href="/dashboard/post/{{ post.pk }}/">{{ post.title }}</a></h3>
+        <p>{{ post.created_at }}</p>
+    </div>
+    {% empty %}
+    <p>No posts yet.</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h2>Tasks</h2>
+    {% for task in tasks %}
+    <div>
+        <p>
+            {{ task.name }} — Due: {{ task.due_date }}
+            {% if task.done %}
+            ✅
+            {% else %}
+            ⏳
+            {% endif %}
+        </p>
+    </div>
+    {% empty %}
+    <p>No tasks yet.</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h2>Products</h2>
+    {% for product in products %}
+    <div>
+        <p>
+            {{ product.name }} — ${{ product.price }}
+            {% if product.in_stock %}
+            (In Stock)
+            {% else %}
+            (Out of Stock)
+            {% endif %}
+        </p>
+    </div>
+    {% empty %}
+    <p>No products yet.</p>
+    {% endfor %}
+</section>
+
+<h2>Tasks</h2>
+<a href="/dashboard/add-task/">+ Add Task</a>
+
+{% endblock %}

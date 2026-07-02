@@ -1,0 +1,14 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p><small>Posted on: {{ post.created_at }}</small></p>
+  <hr>
+  <p>{{ post.body }}</p>
+  <a href="/dashboard/posts/{{ post.pk }}/edit/">Edit</a>
+  <a href="/dashboard/posts/{{ post.pk }}/delete/">Delete</a>
+  <br>
+  <a href="/dashboard/posts/">← Back to Posts</a>
+{% endblock %}
