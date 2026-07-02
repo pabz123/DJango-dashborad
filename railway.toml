@@ -1,5 +1,5 @@
 [build]
-buildCommand = "pip install -r requirements.txt && bash build.sh"
+buildCommand = "pip install -r requirements.txt && python manage.py collectstatic --no-input"
 
 [deploy]
-startCommand = "gunicorn mysite.wsgi --log-file -"
+startCommand = "python manage.py migrate --no-input && python manage.py shell -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'admin1234')\" && gunicorn mysite.wsgi --log-file -"
