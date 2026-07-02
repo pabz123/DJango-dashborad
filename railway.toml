@@ -1,2 +1,5 @@
+[build]
+buildCommand = "pip install -r requirements.txt && bash build.sh"
+
 [deploy]
-releaseCommand = "python manage.py migrate"
+startCommand = "gunicorn mysite.wsgi --log-file -"
