@@ -8,6 +8,9 @@ from .models import Post, Task, Product
 from .forms import TaskForm
 from .serializers import TaskSerializer
 
+from rest_framework import viewsets
+from .serializers import PostSerializer, ProductSerializer
+
 
 # Function-based views
 def dashboard(request):
@@ -71,3 +74,16 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'dashboard/post_confirm_delete.html'
     success_url = reverse_lazy('post-list')
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer    
