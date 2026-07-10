@@ -20,5 +20,5 @@ local_settings.py
 .DS_Store
 Thumbs.db
 
-
+# Generated files
 staticfiles/
